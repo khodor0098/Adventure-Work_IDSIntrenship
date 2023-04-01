@@ -1,0 +1,33 @@
+C:\Users\user\Desktop\testApi\Adventure Work\Adventure Work\bin\Debug\net6.0\appsettings.Development.json
+C:\Users\user\Desktop\testApi\Adventure Work\Adventure Work\bin\Debug\net6.0\appsettings.json
+C:\Users\user\Desktop\testApi\Adventure Work\Adventure Work\bin\Debug\net6.0\Adventure Work.exe
+C:\Users\user\Desktop\testApi\Adventure Work\Adventure Work\bin\Debug\net6.0\Adventure Work.deps.json
+C:\Users\user\Desktop\testApi\Adventure Work\Adventure Work\bin\Debug\net6.0\Adventure Work.runtimeconfig.json
+C:\Users\user\Desktop\testApi\Adventure Work\Adventure Work\bin\Debug\net6.0\Adventure Work.dll
+C:\Users\user\Desktop\testApi\Adventure Work\Adventure Work\bin\Debug\net6.0\Adventure Work.pdb
+C:\Users\user\Desktop\testApi\Adventure Work\Adventure Work\bin\Debug\net6.0\Microsoft.OpenApi.dll
+C:\Users\user\Desktop\testApi\Adventure Work\Adventure Work\bin\Debug\net6.0\Swashbuckle.AspNetCore.Swagger.dll
+C:\Users\user\Desktop\testApi\Adventure Work\Adventure Work\bin\Debug\net6.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+C:\Users\user\Desktop\testApi\Adventure Work\Adventure Work\bin\Debug\net6.0\Swashbuckle.AspNetCore.SwaggerUI.dll
+C:\Users\user\Desktop\testApi\Adventure Work\Adventure Work\bin\Debug\net6.0\System.Data.SqlClient.dll
+C:\Users\user\Desktop\testApi\Adventure Work\Adventure Work\bin\Debug\net6.0\runtimes\win-arm64\native\sni.dll
+C:\Users\user\Desktop\testApi\Adventure Work\Adventure Work\bin\Debug\net6.0\runtimes\win-x64\native\sni.dll
+C:\Users\user\Desktop\testApi\Adventure Work\Adventure Work\bin\Debug\net6.0\runtimes\win-x86\native\sni.dll
+C:\Users\user\Desktop\testApi\Adventure Work\Adventure Work\bin\Debug\net6.0\runtimes\unix\lib\netcoreapp2.1\System.Data.SqlClient.dll
+C:\Users\user\Desktop\testApi\Adventure Work\Adventure Work\bin\Debug\net6.0\runtimes\win\lib\netcoreapp2.1\System.Data.SqlClient.dll
+C:\Users\user\Desktop\testApi\Adventure Work\Adventure Work\obj\Debug\net6.0\Adventure Work.csproj.AssemblyReference.cache
+C:\Users\user\Desktop\testApi\Adventure Work\Adventure Work\obj\Debug\net6.0\Adventure Work.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\user\Desktop\testApi\Adventure Work\Adventure Work\obj\Debug\net6.0\Adventure Work.AssemblyInfoInputs.cache
+C:\Users\user\Desktop\testApi\Adventure Work\Adventure Work\obj\Debug\net6.0\Adventure Work.AssemblyInfo.cs
+C:\Users\user\Desktop\testApi\Adventure Work\Adventure Work\obj\Debug\net6.0\Adventure Work.csproj.CoreCompileInputs.cache
+C:\Users\user\Desktop\testApi\Adventure Work\Adventure Work\obj\Debug\net6.0\Adventure Work.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\user\Desktop\testApi\Adventure Work\Adventure Work\obj\Debug\net6.0\Adventure Work.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\user\Desktop\testApi\Adventure Work\Adventure Work\obj\Debug\net6.0\staticwebassets.build.json
+C:\Users\user\Desktop\testApi\Adventure Work\Adventure Work\obj\Debug\net6.0\staticwebassets.development.json
+C:\Users\user\Desktop\testApi\Adventure Work\Adventure Work\obj\Debug\net6.0\scopedcss\bundle\Adventure Work.styles.css
+C:\Users\user\Desktop\testApi\Adventure Work\Adventure Work\obj\Debug\net6.0\Adventure Work.csproj.CopyComplete
+C:\Users\user\Desktop\testApi\Adventure Work\Adventure Work\obj\Debug\net6.0\Adventure Work.dll
+C:\Users\user\Desktop\testApi\Adventure Work\Adventure Work\obj\Debug\net6.0\refint\Adventure Work.dll
+C:\Users\user\Desktop\testApi\Adventure Work\Adventure Work\obj\Debug\net6.0\Adventure Work.pdb
+C:\Users\user\Desktop\testApi\Adventure Work\Adventure Work\obj\Debug\net6.0\Adventure Work.genruntimeconfig.cache
+C:\Users\user\Desktop\testApi\Adventure Work\Adventure Work\obj\Debug\net6.0\ref\Adventure Work.dll
