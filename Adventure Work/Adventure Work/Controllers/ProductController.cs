@@ -103,8 +103,7 @@ namespace Adventure_Work.Controllers
         [HttpDelete("{id}")]
         public IActionResult DeleteProduct(int id)
         {
-            bool productEx = _productRepository.ProductExists(id);
-            if (productEx == false)
+            if (_productRepository.ProductExists(id) == false)
             {
                 return NotFound();
             }
