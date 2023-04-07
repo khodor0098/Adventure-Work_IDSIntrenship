@@ -8,5 +8,6 @@ namespace Adventure_Work.Interfaces
         int Update(ProductCategory productCategory);
         bool CategoryExists(int productCategoryId);
         int Delete(int productCategoryId);
+        ICollection<Product> GetProductsByCategory(int productCategoryId);
     }
 }

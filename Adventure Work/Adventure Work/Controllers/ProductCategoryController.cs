@@ -50,5 +50,18 @@ namespace Adventure_Work.Controllers
             return Ok($"Number of products deleted: {CategoryDeleted}");
         }
 
+        [HttpGet("{id}")]
+        [ProducesResponseType(200, Type = typeof(IEnumerable<Product>))]
+        public IActionResult GetAllProducts(int id)
+        {
+            if (_productCategoryRepository.CategoryExists(id) == false)
+            {
+                return NotFound();
+            }
+            List<Product> products = (List<Product>)_productCategoryRepository.GetProductsByCategory(id);
+            return Ok(products);
+
+        }
+
     }
 }
