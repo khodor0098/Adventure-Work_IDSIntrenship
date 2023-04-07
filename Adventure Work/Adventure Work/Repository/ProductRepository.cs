@@ -31,7 +31,7 @@ namespace Adventure_Work.Repository
                  @Weight,@DaysToManufacture,@ProductLine,@Class,@Style,
                  @ProductSubcategoryID,@ProductModelID,@SellStartDate,
                  @SellEndDate,@DiscontinuedDate,@rowguid,@ModifiedDate);
-              SELECT SCOPE_IDENTITY();", connection);
+             SELECT CAST(SCOPE_IDENTITY() AS INT)", connection);
                     command.Parameters.AddWithValue("@Name", product.Name);
                     command.Parameters.AddWithValue("@ProductNumber", product.ProductNumber);
                     command.Parameters.AddWithValue("@MakeFlag", product.MakeFlag);
@@ -56,8 +56,7 @@ namespace Adventure_Work.Repository
                     command.Parameters.AddWithValue("@DiscontinuedDate", product.DiscontinuedDate ?? (object)DBNull.Value);
                     command.Parameters.AddWithValue("@rowguid", product.rowguid);
                     command.Parameters.AddWithValue("@ModifiedDate", product.ModifiedDate);
-                    object result = command.ExecuteScalar();
-                     productId = result != null ? Convert.ToInt32(result) : 0;
+                    productId = (int)command.ExecuteScalar();
                 }
             }
             catch (Exception ex)
