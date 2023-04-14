@@ -13,10 +13,10 @@ namespace Adventure_Work.Repository
 
             try
             {
-                using (var connection = new SqlConnection(connectionString))
+                using (SqlConnection connection = new SqlConnection(connectionString))
                 {
                     connection.Open();
-                    var command = new SqlCommand("INSERT INTO Production.ProductCategory (Name, rowguid, ModifiedDate) VALUES (@name, @rowguid, @modifiedDate); SELECT CAST(SCOPE_IDENTITY() AS INT)", connection);
+                    SqlCommand command = new SqlCommand("INSERT INTO Production.ProductCategory (Name, rowguid, ModifiedDate) VALUES (@name, @rowguid, @modifiedDate); SELECT CAST(SCOPE_IDENTITY() AS INT)", connection);
                     command.Parameters.AddWithValue("@name", category.Name);
                     command.Parameters.AddWithValue("@rowguid", category.rowguid);
                     command.Parameters.AddWithValue("@modifiedDate", category.ModifiedDate);
@@ -35,10 +35,10 @@ namespace Adventure_Work.Repository
         {
             try
             {
-                using (var connection = new SqlConnection(connectionString))
+                using (SqlConnection connection = new SqlConnection(connectionString))
                 {
                     connection.Open();
-                    var command = new SqlCommand(
+                    SqlCommand command = new SqlCommand(
                         "UPDATE Production.ProductCategory SET Name = @Name, rowguid = @RowGuid, ModifiedDate = @ModifiedDate WHERE ProductCategoryID = @ProductCategoryID", connection);
                     command.Parameters.AddWithValue("@Name", productCategory.Name);
                     command.Parameters.AddWithValue("@RowGuid", productCategory.rowguid);
@@ -56,10 +56,10 @@ namespace Adventure_Work.Repository
         }
         public bool CategoryExists(int productCategoryId)
         {
-            using (var connection = new SqlConnection(connectionString))
+            using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 connection.Open();
-                var command = new SqlCommand(
+                SqlCommand command = new SqlCommand(
                     "SELECT COUNT(*) FROM Production.ProductCategory WHERE ProductCategoryId = @ProductCategoryId", connection);
                 command.Parameters.AddWithValue("@ProductCategoryId", productCategoryId);
                 return (int)command.ExecuteScalar() > 0;
@@ -70,10 +70,10 @@ namespace Adventure_Work.Repository
             int rowsAffected = 0;
             try
             {
-                using (var connection = new SqlConnection(connectionString))
+                using (SqlConnection connection = new SqlConnection(connectionString))
                 {
                     connection.Open();
-                    var command = new SqlCommand(
+                    SqlCommand command = new SqlCommand(
                         "DELETE FROM Production.ProductCategory WHERE ProductCategoryID = @ProductCategoryID", connection);
                     command.Parameters.AddWithValue("@ProductCategoryID", productCategoryId);
                     rowsAffected = command.ExecuteNonQuery();
@@ -91,10 +91,10 @@ namespace Adventure_Work.Repository
             List<Product> products = new List<Product>();
             try
             {
-                using (var connection = new SqlConnection(connectionString))
+                using (SqlConnection connection = new SqlConnection(connectionString))
                 {
                     connection.Open();
-                    var command = new SqlCommand(
+                    SqlCommand command = new SqlCommand(
                         @"SELECT *
                    FROM Production.Product
                    WHERE ProductSubcategoryID IN(

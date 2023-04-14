@@ -23,6 +23,10 @@ namespace Adventure_Work.Controllers
                 return BadRequest(ModelState);
             }
             int categoryId = _productCategoryRepository.Add(productCategory);
+            if(categoryId == 0)
+            {
+                return BadRequest("Error in inserting");
+            }
             return Ok(categoryId);
         }
         [HttpPut]
@@ -36,10 +40,14 @@ namespace Adventure_Work.Controllers
                 return NotFound("The Product not Found");
             }
             int nbrowsAffected = _productCategoryRepository.Update(productCategory);
+            if(nbrowsAffected == 0)
+            {
+                return BadRequest("Error in Updateing");
+            }
             return Ok(nbrowsAffected);
         }
         [HttpDelete("{id}")]
-        public IActionResult DeleteProduct(int id)
+        public IActionResult DeleteCategory(int id)
         {
             if (_productCategoryRepository.CategoryExists(id) == false)
             {
@@ -47,6 +55,10 @@ namespace Adventure_Work.Controllers
             }
 
             int CategoryDeleted = _productCategoryRepository.Delete(id);
+            if(CategoryDeleted == 0)
+            {
+                return BadRequest("Error");
+            }
             return Ok($"Number of products deleted: {CategoryDeleted}");
         }
 
@@ -59,6 +71,10 @@ namespace Adventure_Work.Controllers
                 return NotFound();
             }
             List<Product> products = (List<Product>)_productCategoryRepository.GetProductsByCategory(id);
+            if(products == null)
+            {
+                return BadRequest("Error");
+            }
             return Ok(products);
 
         }

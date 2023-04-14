@@ -13,10 +13,10 @@ namespace Adventure_Work.Repository
             int productId=0;
             try
             {
-                using (var connection = new SqlConnection(connectionString))
+                using (SqlConnection connection = new SqlConnection(connectionString))
                 {
                     connection.Open();
-                    var command = new SqlCommand(
+                    SqlCommand command = new SqlCommand(
                         @"INSERT INTO [Production].[Product]
                 ([Name],[ProductNumber],[MakeFlag],[FinishedGoodsFlag],
                  [Color],[SafetyStockLevel],[ReorderPoint],[StandardCost],
@@ -86,11 +86,11 @@ namespace Adventure_Work.Repository
         {
             try
             {
-                using (var connection = new SqlConnection(connectionString))
+                using (SqlConnection connection = new SqlConnection(connectionString))
                 {
                     connection.Open();
 
-                    using (var command = new SqlCommand("UPDATE Production.Product SET Name = @name, ProductNumber = @productNumber, MakeFlag = @makeFlag, FinishedGoodsFlag = @finishedGoodsFlag, Color = @color, SafetyStockLevel = @safetyStockLevel, ReorderPoint = @reorderPoint, StandardCost = @standardCost, ListPrice = @listPrice, Size = @size, SizeUnitMeasureCode = @sizeUnitMeasureCode, WeightUnitMeasureCode = @weightUnitMeasureCode, Weight = @weight, DaysToManufacture = @daysToManufacture, ProductLine = @productLine, Class = @class, Style = @style, ProductSubcategoryID = @productSubcategoryID, ProductModelID = @productModelID, SellStartDate = @sellStartDate, SellEndDate = @sellEndDate, DiscontinuedDate = @discontinuedDate, rowguid = @rowguid, ModifiedDate = @modifiedDate WHERE ProductID = @productId", connection))
+                    using (SqlCommand command = new SqlCommand("UPDATE Production.Product SET Name = @name, ProductNumber = @productNumber, MakeFlag = @makeFlag, FinishedGoodsFlag = @finishedGoodsFlag, Color = @color, SafetyStockLevel = @safetyStockLevel, ReorderPoint = @reorderPoint, StandardCost = @standardCost, ListPrice = @listPrice, Size = @size, SizeUnitMeasureCode = @sizeUnitMeasureCode, WeightUnitMeasureCode = @weightUnitMeasureCode, Weight = @weight, DaysToManufacture = @daysToManufacture, ProductLine = @productLine, Class = @class, Style = @style, ProductSubcategoryID = @productSubcategoryID, ProductModelID = @productModelID, SellStartDate = @sellStartDate, SellEndDate = @sellEndDate, DiscontinuedDate = @discontinuedDate, rowguid = @rowguid, ModifiedDate = @modifiedDate WHERE ProductID = @productId", connection))
                     {
                         command.Parameters.AddWithValue("@productId", product.ProductID);
                         command.Parameters.AddWithValue("@name", product.Name);
@@ -135,10 +135,10 @@ namespace Adventure_Work.Repository
         {
             try
             {
-                using (var connection = new SqlConnection(connectionString))
+                using (SqlConnection connection = new SqlConnection(connectionString))
                 {
                     connection.Open();
-                    var command = new SqlCommand("DELETE FROM Production.Product WHERE ProductID = @id", connection);
+                    SqlCommand command = new SqlCommand("DELETE FROM Production.Product WHERE ProductID = @id", connection);
                     command.Parameters.AddWithValue("@id", id);
 
                     return command.ExecuteNonQuery();
