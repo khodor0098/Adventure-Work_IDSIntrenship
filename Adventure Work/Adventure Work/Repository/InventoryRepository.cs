@@ -86,84 +86,99 @@ namespace Adventure_Work.Repository
                 connection.Open();
 
                 string query = @"SELECT p.* 
-                         FROM Production.Product p 
-                         JOIN Production.ProductInventory i ON p.ProductID = i.ProductID 
-                         WHERE i.Shelf = @shelf";
+                 FROM Production.Product p 
+                 JOIN Production.ProductInventory i ON p.ProductID = i.ProductID 
+                 WHERE i.Shelf = @shelf";
 
                 SqlCommand command = new SqlCommand(query, connection);
                 command.Parameters.AddWithValue("@shelf", shelf);
 
                 List<Product> products = new List<Product>();
 
-                using (SqlDataReader reader = command.ExecuteReader())
+                try
                 {
-                    while (reader.Read())
+                    using (SqlDataReader reader = command.ExecuteReader())
                     {
-                        Product product = new Product();
-                        product.ProductID = (int)reader["ProductID"];
-                        product.Name = (string)reader["Name"];
-                        product.ProductNumber = (string)reader["ProductNumber"];
-                        product.MakeFlag = (bool)reader["MakeFlag"];
-                        product.FinishedGoodsFlag = (bool)reader["FinishedGoodsFlag"];
-                        product.Color = reader["Color"] == DBNull.Value ? null : (string)reader["Color"];
-                        product.SafetyStockLevel = (short)reader["SafetyStockLevel"];
-                        product.ReorderPoint = (short)reader["ReorderPoint"];
-                        product.StandardCost = (decimal)reader["StandardCost"];
-                        product.ListPrice = (decimal)reader["ListPrice"];
-                        product.Size = reader["Size"] == DBNull.Value ? null : (string)reader["Size"];
-                        product.SizeUnitMeasureCode = reader["SizeUnitMeasureCode"] == DBNull.Value ? null : (string)reader["SizeUnitMeasureCode"];
-                        product.WeightUnitMeasureCode = reader["WeightUnitMeasureCode"] == DBNull.Value ? null : (string)reader["WeightUnitMeasureCode"];
-                        product.Weight = reader["Weight"] == DBNull.Value ? 0 : (decimal)reader["Weight"];
-                        product.DaysToManufacture = (int)reader["DaysToManufacture"];
-                        product.ProductLine = reader["ProductLine"] == DBNull.Value ? null : (string)reader["ProductLine"];
-                        product.Class = reader["Class"] == DBNull.Value ? null : (string)reader["Class"];
-                        product.Style = reader["Style"] == DBNull.Value ? null : (string)reader["Style"];
-                        product.ProductSubcategoryID = reader["ProductSubcategoryID"] == DBNull.Value ? 0 : (int)reader["ProductSubcategoryID"];
-                        product.ProductModelID = reader["ProductModelID"] == DBNull.Value ? 0 : (int)reader["ProductModelID"]; ;
-                        product.SellStartDate = (DateTime)reader["SellStartDate"];
-                        product.SellEndDate = reader["SellEndDate"] == DBNull.Value ? null : (DateTime?)reader["SellEndDate"];
-                        product.DiscontinuedDate = reader["DiscontinuedDate"] == DBNull.Value ? null : (DateTime?)reader["DiscontinuedDate"];
-                        product.rowguid = (Guid)reader["rowguid"];
-                        product.ModifiedDate = (DateTime)reader["ModifiedDate"];
+                        while (reader.Read())
+                        {
+                            Product product = new Product();
+                            product.ProductID = (int)reader["ProductID"];
+                            product.Name = (string)reader["Name"];
+                            product.ProductNumber = (string)reader["ProductNumber"];
+                            product.MakeFlag = (bool)reader["MakeFlag"];
+                            product.FinishedGoodsFlag = (bool)reader["FinishedGoodsFlag"];
+                            product.Color = reader["Color"] == DBNull.Value ? null : (string)reader["Color"];
+                            product.SafetyStockLevel = (short)reader["SafetyStockLevel"];
+                            product.ReorderPoint = (short)reader["ReorderPoint"];
+                            product.StandardCost = (decimal)reader["StandardCost"];
+                            product.ListPrice = (decimal)reader["ListPrice"];
+                            product.Size = reader["Size"] == DBNull.Value ? null : (string)reader["Size"];
+                            product.SizeUnitMeasureCode = reader["SizeUnitMeasureCode"] == DBNull.Value ? null : (string)reader["SizeUnitMeasureCode"];
+                            product.WeightUnitMeasureCode = reader["WeightUnitMeasureCode"] == DBNull.Value ? null : (string)reader["WeightUnitMeasureCode"];
+                            product.Weight = reader["Weight"] == DBNull.Value ? 0 : (decimal)reader["Weight"];
+                            product.DaysToManufacture = (int)reader["DaysToManufacture"];
+                            product.ProductLine = reader["ProductLine"] == DBNull.Value ? null : (string)reader["ProductLine"];
+                            product.Class = reader["Class"] == DBNull.Value ? null : (string)reader["Class"];
+                            product.Style = reader["Style"] == DBNull.Value ? null : (string)reader["Style"];
+                            product.ProductSubcategoryID = reader["ProductSubcategoryID"] == DBNull.Value ? 0 : (int)reader["ProductSubcategoryID"];
+                            product.ProductModelID = reader["ProductModelID"] == DBNull.Value ? 0 : (int)reader["ProductModelID"]; ;
+                            product.SellStartDate = (DateTime)reader["SellStartDate"];
+                            product.SellEndDate = reader["SellEndDate"] == DBNull.Value ? null : (DateTime?)reader["SellEndDate"];
+                            product.DiscontinuedDate = reader["DiscontinuedDate"] == DBNull.Value ? null : (DateTime?)reader["DiscontinuedDate"];
+                            product.rowguid = (Guid)reader["rowguid"];
+                            product.ModifiedDate = (DateTime)reader["ModifiedDate"];
 
-                        products.Add(product);
+                            products.Add(product);
+                        }
                     }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Error while getting  inventory record: " + ex.Message);
                 }
 
                 return products;
             }
         }
-
         public ICollection<ProductQuantity> GetProductQuantities()
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                connection.Open();
+                try
+                {
+                    connection.Open();
 
-                string query = @"
+                    string query = @"
             SELECT p.Name, SUM(i.Quantity) AS TotalQuantity
             FROM Production.Product p 
             JOIN Production.ProductInventory i ON p.ProductID = i.ProductID 
             GROUP BY p.Name";
 
-                SqlCommand command = new SqlCommand(query, connection);
+                    SqlCommand command = new SqlCommand(query, connection);
 
-                List<ProductQuantity> productsQuantities = new List<ProductQuantity>();
+                    List<ProductQuantity> productsQuantities = new List<ProductQuantity>();
 
-                using (SqlDataReader reader = command.ExecuteReader())
-                {
-                    while (reader.Read())
+                    using (SqlDataReader reader = command.ExecuteReader())
                     {
-                        ProductQuantity productQuantity = new ProductQuantity();
-                        productQuantity.Name = (string)reader["Name"];
-                        productQuantity.Quantity = (int)reader["TotalQuantity"];
+                        while (reader.Read())
+                        {
+                            ProductQuantity productQuantity = new ProductQuantity();
+                            productQuantity.Name = (string)reader["Name"];
+                            productQuantity.Quantity = (int)reader["TotalQuantity"];
 
-                        productsQuantities.Add(productQuantity);
+                            productsQuantities.Add(productQuantity);
+                        }
                     }
-                }
 
-                return productsQuantities;
+                    return productsQuantities;
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Error inserting inventory record: " + ex.Message);
+                    return null;
+                }
             }
         }
+
     }
 }

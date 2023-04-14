@@ -70,7 +70,6 @@ namespace Adventure_Work.Controllers
         }
 
         [HttpGet("{shelf}")]
-        [ProducesResponseType(200, Type = typeof(IEnumerable<Product>))]
         public IActionResult GetAllProducts(string shelf)
         {
             List<Product> products = (List<Product>)_inventoryRepository.GetProductsInShelf(shelf);

@@ -14,6 +14,7 @@ builder.Services.AddScoped<IUnitMeasureRepository, UnitMeasureRepository>();
 builder.Services.AddScoped<IProductCategoryRepository,ProductCategoryRepository>();
 builder.Services.AddScoped<IInventoryRepository,InventoryRepository>();
 builder.Services.AddScoped<ILocationRepository,LocationRepository>();
+builder.Services.AddScoped<IProductPhotoRepository,ProductPhotoRepository>();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
